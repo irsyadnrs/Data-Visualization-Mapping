@@ -1,0 +1,51 @@
+Author : Muhammad Irsyad Nur Rais
+---
+
+
+
+```{r}
+# install package if necessary
+# install.packages('leaflet')
+# load library
+library(leaflet)
+library(dplyr)
+```
+
+
+# Track Directory
+```{r}
+getwd()
+```
+
+
+# Load the wealthiest_zips.Rda file based on your directory
+```{r}
+# This is my directory, don't follow!
+# load('/Users/calvinsibarani/Documents/R Script/Personal Project/Dibimbing/Data Viz Part 3/wealthiest_zips.Rda')
+
+# Load yours!
+load('wealthiest_zips.Rda')
+wealthy_zips %>% glimpse()
+```
+
+#Pre- visualization
+```{r}
+#Assign mean income
+wealth_mean <- wealthy_zips@data$mean_income
+```
+
+# Assignment make visualization from leaflet! Use mean income!
+
+```{r}
+# call leaflet object
+wealthy_zips %>%
+  leaflet() %>%
+  # add Polygons
+  addTiles() %>%
+  addPolygons(label = wealth_mean) %>% 
+  # using CartoDB
+  addProviderTiles(providers$CartoDB.Positron)
+
+#Result
+#Sudah berjalan sesuai dengan pertanyaan dengan cara dihover jadi menggunakan addPolygons(label = wealth_mean)
+```
